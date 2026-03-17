@@ -1,0 +1,40 @@
+# =========================
+# Project-Specific Files
+# =========================
+
+# Environment variables (CRITICAL: Prevents leaking OpenAI API key)
+.env
+
+# Persistent Vector Database (Prevents committing large binary database files)
+chroma_data/
+
+# Optional: Ignore local test documents so you don't accidentally commit personal files
+*.pdf
+*.txt
+# !sample_document.txt  # Uncomment this to specifically allow a sample file
+
+# =========================
+# Python & Environments
+# =========================
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# =========================
+# OS-Specific Files
+# =========================
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
