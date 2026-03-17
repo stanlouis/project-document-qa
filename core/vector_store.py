@@ -5,7 +5,7 @@ from typing import List
 from core.embeddings import get_embedding
 
 class VectorStore:
-    def __init__(self, persist_directory: str = "./chroma_data"):
+    def __init__(self, persist_directory: str = "./chroma_data_ollama"):
         # Initialize a persistent client that saves to disk
         self.client = chromadb.PersistentClient(path=persist_directory)
         

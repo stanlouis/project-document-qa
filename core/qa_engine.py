@@ -9,7 +9,7 @@ If the answer is not explicitly contained in the context, politely state:
 Do not attempt to guess or use outside knowledge.
 """
 
-def generate_answer(question: str, context_chunks: list, model: str = "gpt-4o-mini") -> str:
+def generate_answer(question: str, context_chunks: list, model: str = "llama3.2") -> str:
     """Generates an answer grounded purely in the retrieved context."""
     if not context_chunks:
         return "No document context available to answer the question."

@@ -1,9 +1,9 @@
 # core/config.py
-import os
-from dotenv import load_dotenv
 from openai import OpenAI
 
-load_dotenv()
-
 # Initialize the client once to be imported by other modules
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+# Pointing to a local Ollama server via its OpenAI-compatible API endpoint
+client = OpenAI(
+    base_url="http://localhost:11434/v1",
+    api_key="ollama",
+)
