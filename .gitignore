@@ -12,7 +12,7 @@ chroma_data/
 *.pdf
 *.txt
 # !sample_document.txt  # Uncomment this to specifically allow a sample file
-
+!requirements.txt  # Ensure requirements.txt is tracked for dependencies
 # =========================
 # Python & Environments
 # =========================
