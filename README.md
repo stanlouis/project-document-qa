@@ -72,7 +72,54 @@ The application will launch a local web server (usually at `http://127.0.0.1:786
 3. Type a question in the query box and click **Submit Question**.
 4. *(Optional)* Click **Clear Database** if you want to wipe the local vector store and start fresh.
 
-## 📂 Project Architecture
+## � Cloud vs. Local Execution
+
+This project supports two distinct operational modes, each managed on its own Git branch, so you can switch between them cleanly without touching any code.
+
+| | Cloud Mode (OpenAI) | Local Mode (Ollama) |
+|---|---|---|
+| **Branch** | `main` | `feature/local-ollama` |
+| **LLM** | `gpt-4o-mini` | `llama3.2` |
+| **Embeddings** | `text-embedding-3-small` | `nomic-embed-text` |
+| **Cost** | Pay-per-token | Free |
+| **Privacy** | Data sent to OpenAI | 100% local |
+| **Vector DB** | `chroma_data/` | `chroma_data_ollama/` |
+
+### ☁️ Cloud Mode (OpenAI)
+
+The `main` branch uses OpenAI's hosted models. It requires a valid API key and sends your document chunks to OpenAI's servers for embedding and inference.
+
+```bash
+git switch main
+```
+
+Ensure your `.env` file contains:
+```text
+OPENAI_API_KEY=your_api_key_here
+```
+
+### 🏠 Local Mode (Ollama)
+
+The `feature/local-ollama` branch runs entirely on your own machine — no API key, no cost, and no data leaves your device.
+
+```bash
+git switch feature/local-ollama
+```
+
+**Prerequisites:** Before running this branch, install [Ollama](https://ollama.com) and pull the required models:
+
+```bash
+ollama pull llama3.2
+ollama pull nomic-embed-text
+```
+
+### ⚠️ Database Isolation
+
+The two branches use **separate vector databases** (`chroma_data/` vs `chroma_data_ollama/`). This is intentional: `text-embedding-3-small` produces 1536-dimensional vectors while `nomic-embed-text` produces 768-dimensional vectors, so the databases are fundamentally incompatible. Documents indexed in one branch will **not** appear when querying from the other. You will need to re-index your documents after switching branches.
+
+---
+
+## �📂 Project Architecture
 
 ```text
 project-document-qa/
